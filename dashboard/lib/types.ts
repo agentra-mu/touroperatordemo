@@ -25,6 +25,7 @@ export const FORM_TYPE_LABELS: Record<FormType, string> = {
 export interface BookingRequest {
   id: string;
   reference: string;
+  tourId: string | null;
   activityRef: string | null;
   activityName: string;
   fullName: string;
@@ -35,6 +36,7 @@ export interface BookingRequest {
   startDate: string;
   endDate: string | null;
   message: string;
+  notes: string | null;
   formType: FormType;
   partySize: number;
   status: RequestStatus;
@@ -91,6 +93,7 @@ export const STATUS_GROUP_LABELS: Record<string, string> = {
 export interface DbBookingRequest {
   id: string;
   reference: string | null;
+  tour_id: string | null;
   activity_ref: string | null;
   activity_name: string;
   full_name: string;
@@ -117,6 +120,7 @@ export function mapDbRow(row: DbBookingRequest): BookingRequest {
   return {
     id: row.id,
     reference: row.reference ?? "",
+    tourId: row.tour_id,
     activityRef: row.activity_ref,
     activityName: row.activity_name ?? "",
     fullName: row.full_name,
@@ -127,6 +131,7 @@ export function mapDbRow(row: DbBookingRequest): BookingRequest {
     startDate: row.start_date,
     endDate: row.end_date,
     message: row.message ?? "",
+    notes: row.notes,
     formType: row.form_type,
     partySize: row.party_size,
     status: row.status as RequestStatus,
@@ -134,6 +139,28 @@ export function mapDbRow(row: DbBookingRequest): BookingRequest {
     paid: row.paid ?? false,
     createdAt: row.created_at,
   };
+}
+
+// --- Supabase row type (snake_case columns from booking.tours) ---
+
+export interface DbTour {
+  id: string;
+  slug: string;
+  title: string;
+  category: string;
+  form_type: FormType;
+  location: string | null;
+  short_description: string;
+  description: string;
+  price: number;
+  currency: string;
+  duration_label: string;
+  image_url: string;
+  gallery: string[];
+  highlights: string[];
+  max_party_size: number;
+  is_active: boolean;
+  created_at: string;
 }
 
 // --- Supabase row type (snake_case columns from booking.payments) ---

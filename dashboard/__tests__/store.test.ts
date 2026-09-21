@@ -6,6 +6,7 @@ function makeRequest(overrides: Partial<BookingRequest> = {}): BookingRequest {
   return {
     id: "test-001",
     reference: "REQ-TEST-001",
+    tourId: null,
     activityRef: "test-activity",
     activityName: "Test Activity",
     fullName: "Test Customer",
@@ -16,6 +17,7 @@ function makeRequest(overrides: Partial<BookingRequest> = {}): BookingRequest {
     startDate: "2026-07-01",
     endDate: null,
     message: "",
+    notes: null,
     formType: "activity",
     partySize: 2,
     status: "pending_review",

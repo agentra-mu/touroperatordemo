@@ -153,6 +153,20 @@ export function RequestDetail({ request }: { request: BookingRequest }) {
                   </div>
                 </>
               )}
+
+              {request.status === "declined" && request.notes && (
+                <>
+                  <Separator />
+                  <div>
+                    <p className="text-sm text-muted-foreground">
+                      Decline Reason
+                    </p>
+                    <p className="mt-1 whitespace-pre-wrap text-sm">
+                      {request.notes}
+                    </p>
+                  </div>
+                </>
+              )}
             </CardContent>
           </Card>
 

@@ -1,0 +1,16 @@
+node_modules/
+.next/
+dist/
+build/
+
+# Environment secrets — copy the .example file and fill in your own values.
+.env
+.env.local
+.env*.local
+dashboard/.env.local
+
+# Static site's local Supabase config (contains the anon key for your own project).
+fjelvik/assets/js/config.js
+
+*.log
+.DS_Store

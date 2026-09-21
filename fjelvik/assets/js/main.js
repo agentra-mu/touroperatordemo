@@ -106,8 +106,12 @@
   });
 
   /* Tours: filter chips, price cap, sort --------------------------------- */
-  const grid = $("[data-tour-grid]");
-  if (grid) {
+  // Exposed on window so a page that injects .tcard elements dynamically
+  // (see assets/js/catalog.js, which loads tours from Supabase) can (re-)run
+  // this after rendering, instead of only at DOM-ready with an empty grid.
+  function initTourFilters() {
+    const grid = $("[data-tour-grid]");
+    if (!grid) return;
     const cards = $$(".tcard", grid);
     const count = $("[data-tour-count]");
     const empty = $("[data-tour-empty]");
@@ -120,7 +124,7 @@
     const apply = () => {
       const kind = (chips.find((c) => c.getAttribute("aria-pressed") === "true") || {}).dataset?.kindChip || "all";
       const max = cap ? Number(cap.value) : Infinity;
-      if (capOut) capOut.textContent = `$${max.toLocaleString("en-US")}`;
+      if (capOut) capOut.textContent = `Rs ${max.toLocaleString("en-US")}`;
       let shown = 0;
       cards.forEach((c) => {
         const ok = (kind === "all" || c.dataset.kind === kind) && Number(c.dataset.price) <= max;
@@ -132,7 +136,6 @@
         featured: (a, b) => a.dataset.order - b.dataset.order,
         "price-asc": (a, b) => a.dataset.price - b.dataset.price,
         "price-desc": (a, b) => b.dataset.price - a.dataset.price,
-        days: (a, b) => a.dataset.days - b.dataset.days,
       }[key];
       cards.slice().sort(by).forEach((c) => grid.appendChild(c));
       if (count) count.textContent = `${shown} ${shown === 1 ? "tour" : "tours"}`;
@@ -152,19 +155,30 @@
     });
     apply();
   }
+  window.__fjelvikInitTourFilters = initTourFilters;
+  initTourFilters();
 
   /* Accordion (itinerary, FAQ) ------------------------------------------- */
-  $$("[data-accordion] .acc__btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const open = btn.getAttribute("aria-expanded") === "true";
-      btn.setAttribute("aria-expanded", String(!open));
-      $("#" + btn.getAttribute("aria-controls")).hidden = open;
+  // Also re-bindable — tour.html renders its accordion after fetching the
+  // tour from Supabase, so this must be callable after the DOM exists.
+  function initAccordions() {
+    $$("[data-accordion] .acc__btn").forEach((btn) => {
+      if (btn.dataset.bound) return;
+      btn.dataset.bound = "1";
+      btn.addEventListener("click", () => {
+        const open = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!open));
+        $("#" + btn.getAttribute("aria-controls")).hidden = open;
+      });
     });
-  });
+  }
+  window.__fjelvikInitAccordions = initAccordions;
+  initAccordions();
 
   /* Tour gallery thumbnails ---------------------------------------------- */
-  const stage = $("[data-gallery-stage]");
-  if (stage) {
+  function initGallery() {
+    const stage = $("[data-gallery-stage]");
+    if (!stage) return;
     const thumbs = $$("[data-gallery-thumb]");
     thumbs.forEach((thumb) => thumb.addEventListener("click", () => {
       stage.src = thumb.dataset.full;
@@ -172,6 +186,8 @@
       thumbs.forEach((t) => t.setAttribute("aria-pressed", String(t === thumb)));
     }));
   }
+  window.__fjelvikInitGallery = initGallery;
+  initGallery();
 
   /* Demo forms: validate, then say it's a demo --------------------------- */
   $$("[data-demo-form]").forEach((form) => {

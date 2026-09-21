@@ -69,44 +69,13 @@ export function requestReducer(
   }
 }
 
-// --- n8n webhook (WF-2: booking review — approve/decline) ---
-// The dashboard never writes booking.requests.status for these two actions;
-// n8n does the Supabase writes (plus QuickBooks invoice + email) and Realtime
-// reflects the result back here. This call is fire-and-forget from a data
-// perspective, but a failed call leaves the request stuck in pending_review
-// with no other signal, so failures must surface to the owner.
-const WF2_WEBHOOK_URL = "https://n8n.srv1766517.hstgr.cloud/webhook/wf2";
-
-interface Wf2Response {
-  ok: boolean;
-  error?: string;
-}
-
-async function callWf2(payload: Record<string, unknown>): Promise<void> {
-  let res: Response;
-  try {
-    res = await fetch(WF2_WEBHOOK_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-  } catch {
-    throw new Error(
-      "Could not reach the approval service — check your connection and try again."
-    );
-  }
-
-  let body: Wf2Response | null = null;
-  try {
-    body = (await res.json()) as Wf2Response;
-  } catch {
-    // non-JSON body; fall through to the !res.ok check below
-  }
-
-  if (!res.ok || !body?.ok) {
-    throw new Error(body?.error || `Request failed (HTTP ${res.status})`);
-  }
-}
+// --- Approve / decline ---
+// DEMO SIMPLIFICATION: the original design routed these two actions through
+// an n8n webhook (QuickBooks invoice + MobiPaid link + email), which this
+// demo doesn't have running. The dashboard now writes booking.requests.status
+// directly via the SDK, same as cancelRequest/markCompleted below. No
+// invoice, payment link or email is actually sent — see the demo's README
+// for what a production build would need to restore here.
 
 // --- Supabase helpers ---
 
@@ -236,31 +205,39 @@ export function RequestProvider({ children }: { children: ReactNode }) {
     }
     setActionPending(id, true);
     try {
-      await callWf2({
-        request_id: id,
-        action: "send_payment",
+      const supabase = getSupabase();
+      const { data: userData } = await supabase.auth.getUser();
+      await supabaseUpdate(id, {
+        status: "awaiting_payment",
         total_amount: totalAmount,
+        approved_at: new Date().toISOString(),
+        approved_by: userData.user?.email ?? null,
       });
-      toast.success("Approved — payment link is being sent to the customer");
+      await refresh();
+      toast.success("Approved — request marked awaiting payment");
     } catch (err) {
       const message = err instanceof Error ? err.message : "Unknown error";
       toast.error(
-        `Failed to approve & send payment: ${message}. The request is still pending review — try again.`,
+        `Failed to approve request: ${message}. The request is still pending review — try again.`,
         { duration: 10000 }
       );
     } finally {
       setActionPending(id, false);
     }
-  }, [setActionPending]);
+  }, [setActionPending, refresh]);
 
   const declineRequest = useCallback(async (id: string, note?: string) => {
     setActionPending(id, true);
     try {
-      await callWf2({
-        request_id: id,
-        action: "decline",
-        ...(note ? { note } : {}),
+      const supabase = getSupabase();
+      const { data: userData } = await supabase.auth.getUser();
+      await supabaseUpdate(id, {
+        status: "declined",
+        ...(note ? { notes: note } : {}),
+        approved_at: new Date().toISOString(),
+        approved_by: userData.user?.email ?? null,
       });
+      await refresh();
       toast.success("Request declined");
     } catch (err) {
       const message = err instanceof Error ? err.message : "Unknown error";
@@ -271,7 +248,7 @@ export function RequestProvider({ children }: { children: ReactNode }) {
     } finally {
       setActionPending(id, false);
     }
-  }, [setActionPending]);
+  }, [setActionPending, refresh]);
 
   const cancelRequest = useCallback(
     async (id: string) => {

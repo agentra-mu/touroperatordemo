@@ -23,27 +23,31 @@ A request moves through these statuses (real `booking.requests.status` enum):
 - `cancelled` — cancelled after the fact
 
 ## The core flow: approve & send payment, or decline
-Two owner actions on a `pending_review` request, both fire a POST to the n8n
-WF-2 webhook (`https://n8n.srv1766517.hstgr.cloud/webhook/wf2`):
+Two owner actions on a `pending_review` request:
 1. **Approve** — owner enters a total price in the "Approve & Send Payment"
-   dialog. Sends `{ request_id, action: "send_payment", total_amount }`. n8n
-   creates the QuickBooks invoice, the `booking.payments` row, the MobiPaid
-   link, sends the email, and writes `status: awaiting_payment`.
-2. **Decline** — owner may add a note. Sends
-   `{ request_id, action: "decline", note? }`. n8n writes `status: declined`.
+   dialog. Writes `status: awaiting_payment`, `total_amount`, `approved_at`,
+   `approved_by` directly via the Supabase SDK (`sendPayment` in `lib/store.tsx`).
+2. **Decline** — owner may add a note. Writes `status: declined`, optionally
+   `notes`, `approved_at`, `approved_by` directly via the SDK
+   (`declineRequest` in `lib/store.tsx`).
 
-The dashboard never writes `booking.requests.status` for these two actions —
-n8n owns that write to avoid racing with it. Supabase Realtime (subscribed in
-`RequestProvider`) reflects the result back into the UI automatically,
-including the later automatic `awaiting_payment` → `confirmed` transition once
-MobiPaid confirms payment (no dashboard action involved in that step).
+**DEMO SIMPLIFICATION** — the original design routed both actions through an
+n8n webhook (WF-2, `https://n8n.srv1766517.hstgr.cloud/webhook/wf2`) which
+created a QuickBooks invoice, a `booking.payments` row, a MobiPaid payment
+link, emailed the customer, and wrote the status itself, with the dashboard
+only reflecting the result via Realtime. This demo has no n8n/QuickBooks/
+MobiPaid running, so the dashboard now writes `status` directly instead — no
+invoice, payment link, or email is actually sent. `awaiting_payment` → `confirmed`
+does **not** happen automatically in this demo (there's no payment provider to
+confirm it); the owner would need a manual "mark confirmed" action to close
+that loop, which does not currently exist. Restoring the real n8n integration
+for production means reverting `sendPayment`/`declineRequest` to POST to WF-2
+again instead of writing `booking.requests` directly.
 
-A failed webhook call (network error or non-2xx) surfaces as a visible toast
-error and leaves the request in `pending_review` — the owner needs to know so
-they can retry, since nothing else indicates the click didn't work.
-
-WF-1 (request intake, Supabase-trigger-driven) and WF-4 (reminders, cron-based)
-have no dashboard involvement and should not be touched from here.
+WF-1 (request intake) is now the website inserting straight into
+`booking.requests` via the `booking.create_booking_request()` RPC (see
+`supabase/migrations/0001_init_schema.sql`) rather than an n8n-mediated
+intake. WF-4 (reminders, cron-based) does not exist in this demo.
 
 ## The store seam (key architectural decision)
 ALL state mutations live in `lib/store.tsx` (`sendPayment`, `declineRequest`,
@@ -59,7 +63,8 @@ when present. The dashboard reads this table directly (read-only,
 `fetchPaymentForRequest` in the store); it never writes to it — n8n does.
 
 ## What is out of scope here
-- No auth / login (placeholder user area only)
-- No shared-secret / signature validation on the WF-2 webhook yet (flagged to
-  the owner separately — anyone with the URL can currently call it)
 - No PWA / manifest / service worker
+- No real payment provider, QuickBooks, or email sending — approve/decline
+  only flip `status` in Supabase (see DEMO SIMPLIFICATION above)
+- No "mark confirmed" action — `awaiting_payment` requests stay there unless
+  seeded otherwise, since nothing in this demo confirms payment automatically

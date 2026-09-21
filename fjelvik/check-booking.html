@@ -3,15 +3,14 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>All tours — Fjelvik</title>
-<meta name="description" content="Filterable tour listings by trip type, length and budget — Fjelvik free travel HTML template." />
+<title>Check my booking — Fjelvik</title>
+<meta name="description" content="Look up the status of a booking request by reference code and email." />
 <meta name="theme-color" content="#101412" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23101412'/%3E%3Ccircle cx='16' cy='12' r='4' fill='%23D5E4E1'/%3E%3Cpath d='M5 24l7-8 4 4 3-3 8 7z' fill='%23fff'/%3E%3C/svg%3E" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@400;500;600&family=Golos+Text:wght@400;500;600&family=Ubuntu+Sans+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="preconnect" href="https://images.pexels.com" crossorigin />
 
 <link rel="stylesheet" href="assets/css/tokens.css" />
 <link rel="stylesheet" href="assets/css/site.css" />
@@ -33,15 +32,15 @@
 
     <nav class="nav" id="site-nav" aria-label="Main">
       <a href="index.html">Home</a>
-      <a href="tours.html" aria-current="page">Tours</a>
+      <a href="tours.html">Tours</a>
       <a href="about.html">About Us</a>
       <a href="contact.html">Contact Us</a>
-      <a href="check-booking.html">Check my booking</a>
+      <a href="check-booking.html" aria-current="page">Check my booking</a>
       <a class="nav__signin-mobile" href="contact.html">Plan a trip</a>
     </nav>
 
     <div class="header__tools">
-      <a class="btn header__signin" href="contact.html">Plan a trip</a>
+      <a class="btn header__signin" href="check-booking.html">Check my booking</a>
       <button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
         <span></span><span></span>
       </button>
@@ -50,48 +49,26 @@
 </header>
 
 <main id="main">
-<section class="container phead" aria-labelledby="tours-title">
-  <p class="label" data-tour-count-label>Tours &amp; activities · 2026 season</p>
-  <h1 id="tours-title">Find the trip that fits</h1>
-  <p>Filter by category, cap the budget, and sort. Every booking is reviewed by our team before it's confirmed.</p>
+<section class="container phead" aria-labelledby="lookup-title">
+  <p class="label">Booking status</p>
+  <h1 id="lookup-title">Check my booking</h1>
+  <p>Enter the reference code from your confirmation email along with the email address you booked with.</p>
 </section>
 
-<section class="container section section--flush-top" aria-label="Tour listings">
-  <div class="toolbar">
-    <div class="chips" role="group" aria-label="Category">
-      <button class="chip" type="button" data-kind-chip="all" aria-pressed="true">All</button>
-      <button class="chip" type="button" data-kind-chip="water" aria-pressed="false">Water Activities</button>
-      <button class="chip" type="button" data-kind-chip="land" aria-pressed="false">Land Adventure</button>
-      <button class="chip" type="button" data-kind-chip="nature" aria-pressed="false">Nature &amp; Hiking</button>
-      <button class="chip" type="button" data-kind-chip="accommodation" aria-pressed="false">Accommodation</button>
-      <button class="chip" type="button" data-kind-chip="transport" aria-pressed="false">Transport</button>
+<section class="container section section--flush-top" aria-label="Booking lookup">
+  <form class="contact__form" data-lookup-form novalidate style="max-width:520px">
+    <div class="field">
+      <label class="field__label" for="lk-reference">Reference code</label>
+      <input class="input" id="lk-reference" name="reference" type="text" placeholder="REQ-2026-0001" required />
     </div>
-    <div class="toolbar__right">
-      <label class="range">
-        <span>Max price</span>
-        <input type="range" min="1000" max="12000" step="500" value="12000" data-price-cap />
-        <output data-price-out>Rs 12,000</output>
-      </label>
-      <label>
-        <span class="sr-only">Sort tours</span>
-        <select class="sort" data-sort>
-          <option value="featured">Featured</option>
-          <option value="price-asc">Price: low to high</option>
-          <option value="price-desc">Price: high to low</option>
-        </select>
-      </label>
+    <div class="field">
+      <label class="field__label" for="lk-email">Email used when booking</label>
+      <input class="input" id="lk-email" name="email" type="email" autocomplete="email" required />
     </div>
-  </div>
+    <button class="btn btn--dark" type="submit">Check status</button>
+  </form>
 
-  <p class="results-meta" aria-live="polite">Showing <span data-tour-count>tours</span></p>
-
-  <div class="tgrid" data-tour-grid></div>
-
-  <div class="empty" data-tour-empty hidden>
-    <h2>No tours match those filters</h2>
-    <p>Try a different trip type or raise the price cap.</p>
-    <button class="btn btn--dark" type="button" data-tour-reset>Reset filters</button>
-  </div>
+  <div data-lookup-result hidden style="margin-top:2rem"></div>
 </section>
 </main>
 
@@ -121,7 +98,6 @@
           <p class="label footer__h">Company</p>
           <ul>
             <li><a href="about.html">About us</a></li>
-            <li><a href="about.html">Our guides</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="404.html">404 page</a></li>
           </ul>
@@ -148,6 +124,6 @@
 
 <div class="toast" role="status" aria-live="polite" hidden></div>
 <script src="assets/js/main.js" defer></script>
-<script type="module" src="assets/js/catalog.js"></script>
+<script type="module" src="assets/js/check-booking.js"></script>
 </body>
 </html>

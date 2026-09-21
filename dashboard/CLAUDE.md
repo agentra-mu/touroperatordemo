@@ -14,11 +14,11 @@
   `requestReducer`, etc.). Presentational components (cards, badges, dialogs)
   do not need unit tests.
 
-- **Two-connection rule**: reads/writes go directly dashboard ↔ Supabase via
-  the SDK. Side effects (emails, payment links, QuickBooks) go through n8n
-  webhooks — the dashboard never calls QuickBooks, MobiPaid, or email APIs
-  directly. `sendPayment`/`declineRequest` in `lib/store.tsx` call the n8n
-  WF-2 webhook and do NOT write `booking.requests.status` themselves; Supabase
-  Realtime (subscribed in `RequestProvider`) reflects the resulting write back
-  to the UI. Plain status writes with no side effect (`cancelRequest`,
-  `markCompleted`) still go direct via the SDK.
+- **Direct-Supabase demo build**: all reads/writes go directly dashboard ↔
+  Supabase via the SDK, including `sendPayment`/`declineRequest` in
+  `lib/store.tsx` (see CONTEXT.md's DEMO SIMPLIFICATION note — production
+  originally routed those two through an n8n webhook that created a
+  QuickBooks invoice + MobiPaid link + email; this demo has none of that
+  infra, so they just write `status` directly). Supabase Realtime (subscribed
+  in `RequestProvider`) still reflects writes back to the UI, which matters
+  once the website (a separate static app) also writes to the same tables.
