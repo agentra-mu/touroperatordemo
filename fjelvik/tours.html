@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>All tours — Fjelvik</title>
+<meta name="description" content="Filterable tour listings by trip type, length and budget — Fjelvik free travel HTML template." />
+<meta name="theme-color" content="#101412" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23101412'/%3E%3Ccircle cx='16' cy='12' r='4' fill='%23D5E4E1'/%3E%3Cpath d='M5 24l7-8 4 4 3-3 8 7z' fill='%23fff'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=SUSE:wght@400;500;600&family=Golos+Text:wght@400;500;600&family=Ubuntu+Sans+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://images.pexels.com" crossorigin />
+
+<link rel="stylesheet" href="assets/css/tokens.css" />
+<link rel="stylesheet" href="assets/css/site.css" />
+<link rel="stylesheet" href="assets/css/pages.css" />
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="header" data-header="solid">
+  <div class="container header__inner">
+    <a class="brand" href="index.html" aria-label="Fjelvik — home">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="2" />
+        <circle cx="16" cy="11.5" r="3.2" fill="currentColor" />
+        <path d="M5.5 23.5 12.5 16l4 4 3-3 7 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+      </svg>
+      <span class="brand__word">fjelvik</span>
+    </a>
+
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="tours.html" aria-current="page">Tours</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
+      <a class="nav__signin-mobile" href="contact.html">Plan a trip</a>
+    </nav>
+
+    <div class="header__tools">
+      <a class="btn header__signin" href="contact.html">Plan a trip</a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="container phead" aria-labelledby="tours-title">
+  <p class="label">9 guided tours · 2026 season</p>
+  <h1 id="tours-title">Find the trip that fits</h1>
+  <p>Filter by the kind of days you want, cap the budget, and sort. Every tour is small-group, locally guided and fully supported.</p>
+</section>
+
+<section class="container section section--flush-top" aria-label="Tour listings">
+  <div class="toolbar">
+    <div class="chips" role="group" aria-label="Trip type">
+      <button class="chip" type="button" data-kind-chip="all" aria-pressed="true">All</button>
+      <button class="chip" type="button" data-kind-chip="trek" aria-pressed="false">Trekking</button>
+      <button class="chip" type="button" data-kind-chip="island" aria-pressed="false">Islands</button>
+      <button class="chip" type="button" data-kind-chip="volcano" aria-pressed="false">Volcanoes</button>
+      <button class="chip" type="button" data-kind-chip="culture" aria-pressed="false">Culture</button>
+    </div>
+    <div class="toolbar__right">
+      <label class="range">
+        <span>Max price</span>
+        <input type="range" min="500" max="2700" step="50" value="2700" data-price-cap />
+        <output data-price-out>$2,700</output>
+      </label>
+      <label>
+        <span class="sr-only">Sort tours</span>
+        <select class="sort" data-sort>
+          <option value="featured">Featured</option>
+          <option value="price-asc">Price: low to high</option>
+          <option value="price-desc">Price: high to low</option>
+          <option value="days">Shortest first</option>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  <p class="results-meta" aria-live="polite">Showing <span data-tour-count>9 tours</span></p>
+
+  <div class="tgrid" data-tour-grid>
+        <article class="tcard" data-kind="trek" data-price="1890" data-days="7">
+          <div class="tcard__media">
+            <img src="https://images.pexels.com/photos/29298066/pexels-photo-29298066.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Lago di Braies, Italy" width="800" height="600" fetchpriority="high" decoding="async" />
+            <span class="tcard__kind">Trekking</span>
+          </div>
+          <div class="tcard__body">
+            <p class="tcard__place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Lago di Braies, Italy</p>
+            <h3 class="tcard__name"><a href="tour.html">Dolomites Lakes & Ridges</a></h3>
+            <p class="tcard__facts">
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>7 days</span>
+              <span>Moderate</span>
+              <span class="tcard__rating"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9Z"/></svg>4.9 <small>(212)</small></span>
+            </p>
+            <p class="tcard__foot">
+              <span class="tcard__price"><small>from</small> $1,890</span>
+              <span class="tcard__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+            </p>
+          </div>
+        </article>
+        <article class="tcard" data-kind="volcano" data-price="740" data-days="4">
+          <div class="tcard__media">
+            <img src="https://images.pexels.com/photos/12278092/pexels-photo-12278092.jpeg?auto=compress&cs=tinysrgb&w=800" alt="East Java, Indonesia" width="800" height="600" fetchpriority="high" decoding="async" />
+            <span class="tcard__kind">Volcanoes</span>
+          </div>
+          <div class="tcard__body">
+            <p class="tcard__place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>East Java, Indonesia</p>
+            <h3 class="tcard__name"><a href="tour.html">Bromo Sunrise Expedition</a></h3>
+            <p class="tcard__facts">
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>4 days</span>
+              <span>Easy</span>
+              <span class="tcard__rating"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9Z"/></svg>4.8 <small>(388)</small></span>
+            </p>
+            <p class="tcard__foot">
+              <span class="tcard__price"><small>from</small> $740</span>
+              <span class="tcard__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+            </p>
+          </div>
+        </article>
+        <article class="tcard" data-kind="island" data-price="560" data-days="3">
+          <div class="tcard__media">
+            <img src="https://images.pexels.com/photos/6871874/pexels-photo-6871874.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Quảng Ninh, Vietnam" width="800" height="600" loading="lazy" decoding="async" />
+            <span class="tcard__kind">Islands</span>
+          </div>
+          <div class="tcard__body">
+            <p class="tcard__place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Quảng Ninh, Vietnam</p>
+            <h3 class="tcard__name"><a href="tour.html">Ha Long Bay by Junk Boat</a></h3>
+            <p class="tcard__facts">
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>3 days</span>
+              <span>Easy</span>
+              <span class="tcard__rating"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9Z"/></svg>4.7 <small>(451)</small></span>
+            </p>
+            <p class="tcard__foot">
+              <span class="tcard__price"><small>from</small> $560</span>
+              <span class="tcard__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+            </p>
+          </div>
+        </article>
+        <article class="tcard" data-kind="culture" data-price="2150" data-days="6">
+          <div class="tcard__media">
+            <img src="https://images.pexels.com/photos/31710067/pexels-photo-31710067.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Yamanashi, Japan" width="800" height="600" loading="lazy" decoding="async" />
+            <span class="tcard__kind">Culture</span>
+          </div>
+          <div class="tcard__body">
+            <p class="tcard__place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Yamanashi, Japan</p>
+            <h3 class="tcard__name"><a href="tour.html">Fuji Five Lakes Circuit</a></h3>
+            <p class="tcard__facts">
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>6 days</span>
+              <span>Moderate</span>
+              <span class="tcard__rating"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9Z"/></svg>4.9 <small>(167)</small></span>
+            </p>
+            <p class="tcard__foot">
+              <span class="tcard__price"><small>from</small> $2,150</span>
+              <span class="tcard__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+            </p>
+          </div>
+        </article>
+        <article class="tcard" data-kind="island" data-price="2680" data-days="8">
+          <div class="tcard__media">
+            <img src="https://images.pexels.com/photos/37805584/pexels-photo-37805584.jpeg?auto=compress&cs=tinysrgb&w=800" alt="West Papua, Indonesia" width="800" height="600" loading="lazy" decoding="async" />
+            <span class="tcard__kind">Islands</span>
+          </div>
+          <div class="tcard__body">
+            <p class="tcard__place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>West Papua, Indonesia</p>
+            <h3 class="tcard__name"><a href="tour.html">Raja Ampat Island Hopping</a></h3>
+            <p class="tcard__facts">
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>8 days</span>
+              <span>Easy</span>
+              <span class="tcard__rating"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9Z"/></svg>5.0 <small>(94)</small></span>
+            </p>
+            <p class="tcard__foot">
+              <span class="tcard__price"><small>from</small> $2,680</span>
+              <span class="tcard__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+            </p>
+          </div>
+        </article>
+        <article class="tcard" data-kind="trek" data-price="1240" data-days="5">
+          <div class="tcard__media">
+            <img src="https://images.pexels.com/photos/28991457/pexels-photo-28991457.jpeg?auto=compress&cs=tinysrgb&w=800" alt="São Miguel, Portugal" width="800" height="600" loading="lazy" decoding="async" />
+            <span class="tcard__kind">Trekking</span>
+          </div>
+          <div class="tcard__body">
+            <p class="tcard__place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>São Miguel, Portugal</p>
+            <h3 class="tcard__name"><a href="tour.html">Azores Crater Trails</a></h3>
+            <p class="tcard__facts">
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>5 days</span>
+              <span>Moderate</span>
+              <span class="tcard__rating"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9Z"/></svg>4.8 <small>(133)</small></span>
+            </p>
+            <p class="tcard__foot">
+              <span class="tcard__price"><small>from</small> $1,240</span>
+              <span class="tcard__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+            </p>
+          </div>
+        </article>
+        <article class="tcard" data-kind="trek" data-price="1960" data-days="5">
+          <div class="tcard__media">
+            <img src="https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Kauai, Hawaii" width="800" height="600" loading="lazy" decoding="async" />
+            <span class="tcard__kind">Trekking</span>
+          </div>
+          <div class="tcard__body">
+            <p class="tcard__place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Kauai, Hawaii</p>
+            <h3 class="tcard__name"><a href="tour.html">Kalalau Coast Trek</a></h3>
+            <p class="tcard__facts">
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>5 days</span>
+              <span>Challenging</span>
+              <span class="tcard__rating"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9Z"/></svg>4.9 <small>(76)</small></span>
+            </p>
+            <p class="tcard__foot">
+              <span class="tcard__price"><small>from</small> $1,960</span>
+              <span class="tcard__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+            </p>
+          </div>
+        </article>
+        <article class="tcard" data-kind="culture" data-price="690" data-days="3">
+          <div class="tcard__media">
+            <img src="https://images.pexels.com/photos/19228322/pexels-photo-19228322.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Göreme, Türkiye" width="800" height="600" loading="lazy" decoding="async" />
+            <span class="tcard__kind">Culture</span>
+          </div>
+          <div class="tcard__body">
+            <p class="tcard__place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Göreme, Türkiye</p>
+            <h3 class="tcard__name"><a href="tour.html">Cappadocia Balloon Dawn</a></h3>
+            <p class="tcard__facts">
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>3 days</span>
+              <span>Easy</span>
+              <span class="tcard__rating"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9Z"/></svg>4.8 <small>(502)</small></span>
+            </p>
+            <p class="tcard__foot">
+              <span class="tcard__price"><small>from</small> $690</span>
+              <span class="tcard__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+            </p>
+          </div>
+        </article>
+        <article class="tcard" data-kind="trek" data-price="2420" data-days="9">
+          <div class="tcard__media">
+            <img src="https://images.pexels.com/photos/28842699/pexels-photo-28842699.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Western Norway" width="800" height="600" loading="lazy" decoding="async" />
+            <span class="tcard__kind">Trekking</span>
+          </div>
+          <div class="tcard__body">
+            <p class="tcard__place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Western Norway</p>
+            <h3 class="tcard__name"><a href="tour.html">Fjord Hut-to-Hut</a></h3>
+            <p class="tcard__facts">
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>9 days</span>
+              <span>Challenging</span>
+              <span class="tcard__rating"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9Z"/></svg>4.9 <small>(58)</small></span>
+            </p>
+            <p class="tcard__foot">
+              <span class="tcard__price"><small>from</small> $2,420</span>
+              <span class="tcard__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+            </p>
+          </div>
+        </article>
+  </div>
+
+  <div class="empty" data-tour-empty hidden>
+    <h2>No tours match those filters</h2>
+    <p>Try a different trip type or raise the price cap.</p>
+    <button class="btn btn--dark" type="button" data-tour-reset>Reset filters</button>
+  </div>
+</section>
+
+<section class="section section--flush-top" aria-labelledby="where-title">
+  <div class="container">
+    <div class="shead shead--split">
+      <div>
+        <p class="label">By destination</p>
+        <h2 id="where-title">Or start with a place</h2>
+      </div>
+    </div>
+    <div class="dest-strip">
+        <a class="dtile " href="tours.html">
+          <img src="https://images.pexels.com/photos/29298066/pexels-photo-29298066.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="Lago di Braies, Italy" width="1100" height="733" loading="lazy" decoding="async" />
+          <span class="dtile__meta">
+            <span class="dtile__name">Lago di Braies</span>
+            <span class="dtile__place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Italy</span>
+          </span>
+          <span class="dtile__count">6 tours</span>
+        </a>
+        <a class="dtile " href="tours.html">
+          <img src="https://images.pexels.com/photos/12278092/pexels-photo-12278092.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="Mount Bromo, Indonesia" width="1100" height="733" loading="lazy" decoding="async" />
+          <span class="dtile__meta">
+            <span class="dtile__name">Mount Bromo</span>
+            <span class="dtile__place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Indonesia</span>
+          </span>
+          <span class="dtile__count">4 tours</span>
+        </a>
+        <a class="dtile " href="tours.html">
+          <img src="https://images.pexels.com/photos/6871874/pexels-photo-6871874.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="Ha Long Bay, Vietnam" width="1100" height="733" loading="lazy" decoding="async" />
+          <span class="dtile__meta">
+            <span class="dtile__name">Ha Long Bay</span>
+            <span class="dtile__place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Vietnam</span>
+          </span>
+          <span class="dtile__count">5 tours</span>
+        </a>
+        <a class="dtile " href="tours.html">
+          <img src="https://images.pexels.com/photos/31710067/pexels-photo-31710067.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="Mount Fuji, Japan" width="1100" height="733" loading="lazy" decoding="async" />
+          <span class="dtile__meta">
+            <span class="dtile__name">Mount Fuji</span>
+            <span class="dtile__place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Japan</span>
+          </span>
+          <span class="dtile__count">7 tours</span>
+        </a>
+        <a class="dtile " href="tours.html">
+          <img src="https://images.pexels.com/photos/37805584/pexels-photo-37805584.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="Raja Ampat, Indonesia" width="1100" height="733" loading="lazy" decoding="async" />
+          <span class="dtile__meta">
+            <span class="dtile__name">Raja Ampat</span>
+            <span class="dtile__place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Indonesia</span>
+          </span>
+          <span class="dtile__count">3 tours</span>
+        </a>
+        <a class="dtile " href="tours.html">
+          <img src="https://images.pexels.com/photos/28991457/pexels-photo-28991457.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="Sete Cidades, Azores, Portugal" width="1100" height="733" loading="lazy" decoding="async" />
+          <span class="dtile__meta">
+            <span class="dtile__name">Sete Cidades</span>
+            <span class="dtile__place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Azores, Portugal</span>
+          </span>
+          <span class="dtile__count">4 tours</span>
+        </a>
+        <a class="dtile " href="tours.html">
+          <img src="https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="Kalalau Valley, Kauai, Hawaii" width="1100" height="733" loading="lazy" decoding="async" />
+          <span class="dtile__meta">
+            <span class="dtile__name">Kalalau Valley</span>
+            <span class="dtile__place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Kauai, Hawaii</span>
+          </span>
+          <span class="dtile__count">2 tours</span>
+        </a>
+        <a class="dtile " href="tours.html">
+          <img src="https://images.pexels.com/photos/19228322/pexels-photo-19228322.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="Göreme, Cappadocia, Türkiye" width="1100" height="733" loading="lazy" decoding="async" />
+          <span class="dtile__meta">
+            <span class="dtile__name">Göreme</span>
+            <span class="dtile__place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Cappadocia, Türkiye</span>
+          </span>
+          <span class="dtile__count">5 tours</span>
+        </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__lead">
+        <p class="footer__title">Letters from the trail</p>
+        <p class="footer__sub">One email a month: new routes, early-bird departures and a field note from a guide. No spam, ever.</p>
+        <form class="subscribe" data-demo-form novalidate>
+          <label class="sr-only" for="sub-email">Email address</label>
+          <input id="sub-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+          <button class="btn btn--glacier" type="submit">Subscribe</button>
+          <p class="form-note" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <div class="footer__cols">
+        <div>
+          <p class="label footer__h">Explore</p>
+          <ul>
+            <li><a href="tours.html">All tours</a></li>
+            <li><a href="tours.html">Trekking</a></li>
+            <li><a href="tours.html">Island hopping</a></li>
+            <li><a href="tour.html">Tour detail</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="label footer__h">Company</p>
+          <ul>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="about.html">Our guides</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="404.html">404 page</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="label footer__h">Visit</p>
+          <address>
+            14 Harbour Lane<br />Bergen 5003, Norway<br />
+            <a href="tel:+4755000000">+47 55 00 00 00</a><br />
+            <a href="mailto:hello@example.com">hello@example.com</a>
+          </address>
+        </div>
+      </div>
+    </div>
+
+    <p class="footer__word" aria-hidden="true">fjelvik</p>
+
+    <div class="footer__bottom">
+      <p>&copy; <span data-year>2026</span> Fjelvik Travel. Free template by <a href="https://html.design/">html.design</a>.</p>
+      <p>Photography via <a href="https://www.pexels.com/">Pexels</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" role="status" aria-live="polite" hidden></div>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Off the map — Fjelvik</title>
+<meta name="description" content="Page not found — Fjelvik free travel HTML template." />
+<meta name="theme-color" content="#101412" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23101412'/%3E%3Ccircle cx='16' cy='12' r='4' fill='%23D5E4E1'/%3E%3Cpath d='M5 24l7-8 4 4 3-3 8 7z' fill='%23fff'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=SUSE:wght@400;500;600&family=Golos+Text:wght@400;500;600&family=Ubuntu+Sans+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://images.pexels.com" crossorigin />
+
+<link rel="stylesheet" href="assets/css/tokens.css" />
+<link rel="stylesheet" href="assets/css/site.css" />
+<link rel="stylesheet" href="assets/css/pages.css" />
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="header" data-header="solid">
+  <div class="container header__inner">
+    <a class="brand" href="index.html" aria-label="Fjelvik — home">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="2" />
+        <circle cx="16" cy="11.5" r="3.2" fill="currentColor" />
+        <path d="M5.5 23.5 12.5 16l4 4 3-3 7 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+      </svg>
+      <span class="brand__word">fjelvik</span>
+    </a>
+
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="tours.html">Tours</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
+      <a class="nav__signin-mobile" href="contact.html">Plan a trip</a>
+    </nav>
+
+    <div class="header__tools">
+      <a class="btn header__signin" href="contact.html">Plan a trip</a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="container lost" aria-labelledby="lost-title">
+  <div>
+    <p class="lost__code">ERROR 404 · 0°00′N 0°00′E</p>
+    <h1 id="lost-title">This trail doesn&rsquo;t go anywhere</h1>
+    <p>The page you were looking for has moved or never existed. Head back to base camp, or pick a tour and get properly lost.</p>
+    <div class="lost__actions">
+      <a class="btn btn--dark" href="index.html">Back to home</a>
+      <a class="btn btn--ghost" href="tours.html">Browse tours</a>
+    </div>
+  </div>
+  <div class="lost__media">
+    <img src="https://images.pexels.com/photos/5708937/pexels-photo-5708937.jpeg?auto=compress&cs=tinysrgb&w=900" alt="A lone A-frame cabin on a rocky mountainside" width="900" height="1125" fetchpriority="high" decoding="async" />
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__lead">
+        <p class="footer__title">Letters from the trail</p>
+        <p class="footer__sub">One email a month: new routes, early-bird departures and a field note from a guide. No spam, ever.</p>
+        <form class="subscribe" data-demo-form novalidate>
+          <label class="sr-only" for="sub-email">Email address</label>
+          <input id="sub-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+          <button class="btn btn--glacier" type="submit">Subscribe</button>
+          <p class="form-note" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <div class="footer__cols">
+        <div>
+          <p class="label footer__h">Explore</p>
+          <ul>
+            <li><a href="tours.html">All tours</a></li>
+            <li><a href="tours.html">Trekking</a></li>
+            <li><a href="tours.html">Island hopping</a></li>
+            <li><a href="tour.html">Tour detail</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="label footer__h">Company</p>
+          <ul>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="about.html">Our guides</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="404.html" aria-current="page">404 page</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="label footer__h">Visit</p>
+          <address>
+            14 Harbour Lane<br />Bergen 5003, Norway<br />
+            <a href="tel:+4755000000">+47 55 00 00 00</a><br />
+            <a href="mailto:hello@example.com">hello@example.com</a>
+          </address>
+        </div>
+      </div>
+    </div>
+
+    <p class="footer__word" aria-hidden="true">fjelvik</p>
+
+    <div class="footer__bottom">
+      <p>&copy; <span data-year>2026</span> Fjelvik Travel. Free template by <a href="https://html.design/">html.design</a>.</p>
+      <p>Photography via <a href="https://www.pexels.com/">Pexels</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" role="status" aria-live="polite" hidden></div>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
