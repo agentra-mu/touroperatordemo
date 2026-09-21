@@ -1,6 +1,6 @@
 {
-  "name": "Allez Moris — Owner Dashboard",
-  "short_name": "Allez Moris",
+  "name": "Tour Operator — Owner Dashboard",
+  "short_name": "Tour Operator",
   "description": "Owner dashboard for managing tourism booking requests",
   "start_url": "/",
   "scope": "/",

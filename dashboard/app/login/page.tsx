@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import Image from "next/image";
 import { Loader2, MailCheck } from "lucide-react";
 import { toast } from "sonner";
 import { getSupabase } from "@/lib/supabase";
@@ -78,19 +77,9 @@ export default function LoginPage() {
     <div className="flex min-h-screen items-center justify-center px-4 py-8">
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <div className="mb-1 flex items-center gap-2.5">
-            <Image
-              src="/allez-moris-logo.png"
-              alt="Allez Moris"
-              width={32}
-              height={32}
-              className="size-8 shrink-0 rounded-lg"
-              priority
-            />
-            <div className="leading-tight">
-              <CardTitle>Allez Moris</CardTitle>
-              <CardDescription>Owner Dashboard</CardDescription>
-            </div>
+          <div className="mb-1 leading-tight">
+            <CardTitle>Tour Operator</CardTitle>
+            <CardDescription>Owner Dashboard</CardDescription>
           </div>
         </CardHeader>
         <CardContent>

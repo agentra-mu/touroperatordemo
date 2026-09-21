@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -22,17 +21,9 @@ export function Header() {
     <header className="sticky top-0 z-20 border-b bg-card/80 pt-[env(safe-area-inset-top)] backdrop-blur-sm">
       <div className="container mx-auto flex items-center gap-2.5 px-4 py-3.5 sm:px-6">
         <div className="flex shrink-0 items-center gap-2.5">
-          <Image
-            src="/allez-moris-logo.png"
-            alt="Allez Moris"
-            width={32}
-            height={32}
-            className="size-8 shrink-0 rounded-lg"
-            priority
-          />
           <div className="hidden leading-tight sm:block">
             <h1 className="text-[15px] font-semibold tracking-tight text-foreground">
-              Allez Moris
+              Tour Operator
             </h1>
             <p className="text-xs text-muted-foreground">Owner Dashboard</p>
           </div>
